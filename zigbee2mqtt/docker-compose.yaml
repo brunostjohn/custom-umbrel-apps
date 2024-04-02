@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  zigbee2mqtt:
+    container_name: zigbee2mqtt
+    image: koenkk/zigbee2mqtt
+    restart: unless-stopped
+    volumes:
+      - ${APP_DATA_DIR}/data:/app/data
+      - /run/udev:/run/udev:ro
+    ports:
+      # Frontend port
+      - 9123:8080
+    environment:
+      - TZ=Europe/Dublin
+    devices:
+      # Make sure this matched your adapter location
+      - /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0:/dev/ttyACM0
+  mosquitto:
+    container_name: mosquitto
+    image: eclipse-mosquitto
+    command: "mosquitto -c /mosquitto-no-auth.conf"
+    restart: unless-stopped
+    volumes:
+      - ${APP_DATA_DIR}/mqtt-data:/mosquitto
+    ports:
+      - 1883:1883
+      - 9001:9001
