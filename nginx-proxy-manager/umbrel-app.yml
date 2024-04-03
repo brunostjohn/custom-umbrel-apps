@@ -4,8 +4,8 @@ name: Nginx Proxy Manager
 tagline: We all know what this does
 icon: https://github.com/brunostjohn/custom-umbrel-apps/blob/main/nginx-proxy-manager/npm.png?raw=true
 category: Development
-version: "1.0.0"
-port: 9123
+version: "1.0.1"
+port: 83
 description: >-
   Yeah npm and all that
 
